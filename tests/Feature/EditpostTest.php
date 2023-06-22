@@ -96,7 +96,8 @@ class EditpostTest extends TestCase
         $post = Post::factory()->create();
 
 
-        $response = $this->actingAs($user)->post('/editpost/'.$post->id);
+        $response = $this->actingAs($user)->post('/editpost/'.$post->id,['title'=>'title','message'=>'message',
+            'vision'=>1]);
 
         $response->assertStatus(403);
 

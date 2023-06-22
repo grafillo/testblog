@@ -16,6 +16,8 @@ class PostController extends Controller
 
         $posts = Post::where('autor_id',$autor_id)->get();
 
+        //return view('index',['posts'=>Auth::user()->posts]);
+
         return view('index',['posts'=>$posts]);
     }
 
@@ -54,6 +56,10 @@ class PostController extends Controller
             abort(404);
         };
 
+        if($post->vision==0) {
+            $this->authorize("view", $post);
+        };
+
         return view('onepost',['post'=>$post]);
     }
 
@@ -66,7 +72,7 @@ class PostController extends Controller
         return view('editpost',['post'=>$post]);
     }
 
-    public function updatePost($id,Request $req)
+    public function updatePost($id,PostRequest $req)
     {
         $post = Post::find($id);
         $this->authorize("update",$post);

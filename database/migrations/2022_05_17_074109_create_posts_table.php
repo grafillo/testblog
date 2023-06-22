@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title',255);
             $table->text('text');
             $table->foreignId('autor_id')->constrained('users')->onDelete('cascade');
-            $table->boolean('vision');
+            $table->boolean('vision')->index('vision');
             $table->timestamps();
         });
     }

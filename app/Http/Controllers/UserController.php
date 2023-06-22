@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AvatarRequest;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\User;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
 
-    public function changeAvatar(Request $req, $id){
+    public function changeAvatar(AvatarRequest $req, $id){
 
         if(isset($req->image)) {
 

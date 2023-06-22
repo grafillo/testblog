@@ -73,6 +73,16 @@
             @endguest
 
             @auth
+                    @if(count($errors) && !Request::is('register'))
+
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <p>{{ $error }}</p>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                 @if(Auth::user()->role=='admin')
                     <h6>Вы вошли как <span class="text-danger"> {{Auth::user()->name}} </span> </h6>

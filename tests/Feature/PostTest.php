@@ -18,7 +18,7 @@ class PostTest extends TestCase
     public function test_get_postid_real()
     {
 
-        $post = Post::factory()->create(['title'=>'test_get_postid_real']);
+        $post = Post::factory()->create(['title'=>'test_get_postid_real','vision'=>'1']);
 
         $response = $this->get('/post/' . $post->id);
 
@@ -35,6 +35,16 @@ class PostTest extends TestCase
         $response = $this->get('/post/'.'88881');
 
         $response->assertStatus(404);
+
+    }
+
+    public function test_get_postid_vision_0_by_unreguser(){
+
+        $post = Post::factory()->create(['vision'=>'0']);
+
+        $response = $this->get('/post/'.$post->id);
+
+        $response->assertStatus(403);
 
     }
 }

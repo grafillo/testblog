@@ -30,7 +30,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        //
+        return isset($user->email_verified_at) || $user->role=='admin';
     }
 
     /**
