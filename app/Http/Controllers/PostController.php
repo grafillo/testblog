@@ -16,8 +16,6 @@ class PostController extends Controller
 
         $posts = Post::where('autor_id',$autor_id)->get();
 
-        //return view('index',['posts'=>Auth::user()->posts]);
-
         return view('index',['posts'=>$posts]);
     }
 
